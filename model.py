@@ -10,6 +10,7 @@ import json
 from tabulate import tabulate
 from colorama import Fore, Style
 import pandas as pd
+import sys
 
 # Load the data
 def train_model():
@@ -64,7 +65,7 @@ def train_model():
     ]
 
     print(Fore.YELLOW + "Model Performance" + Style.RESET_ALL)
-    print(tabulate(colored_table, headers="firstrow", tablefmt="fancy_grid"))
+    print(tabulate(colored_table, headers="firstrow", tablefmt="fancy_grid"),file=sys.stdout)
     print(Style.RESET_ALL)
 
     return best_model
@@ -117,7 +118,7 @@ def main(input):
         ]
 
         print(Fore.YELLOW + "Our Model Prediction" + Style.RESET_ALL)
-        print(tabulate(colored_table, tablefmt="fancy_grid"))
+        print(tabulate(colored_table, tablefmt="fancy_grid"),file=sys.stdout)
     except json.JSONDecodeError as e:
         print("Invalid JSON string:", e)
         sys.exit(1)
